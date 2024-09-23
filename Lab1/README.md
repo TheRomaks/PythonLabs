@@ -113,36 +113,36 @@
      - Распечатайте общее время звучания трех песен: 'Sweetest Perfection', 'Policy of Truth' и 'Blue Dress'
    - **Решение:**
      ```python
-     first_songs_list=[
-    ['Halo', 4.9],
-    ['Enjoy the Silence', 4.20],
-    ['Clean', 5.83]
-    ]
+      first_songs_list=[
+      ['Halo', 4.9],
+      ['Enjoy the Silence', 4.20],
+      ['Clean', 5.83]
+      ]
 
-    total_time=round(sum(sumsongs[1] for sumsongs in first_songs_list),2)
+      total_time=round(sum(sumsongs[1] for sumsongs in first_songs_list),2)
 
-    print(f"Три песни звучат {total_time} минут")
-     
-    sweetest_perfection_time = violator_songs_dict['Sweetest Perfection']
-    policy_of_truth_time = violator_songs_dict['Policy of Truth']
-    blue_dress_time = violator_songs_dict['Blue Dress']
+      print(f"Три песни звучат {total_time} минут")
+      
+      sweetest_perfection_time = violator_songs_dict['Sweetest Perfection']
+      policy_of_truth_time = violator_songs_dict['Policy of Truth']
+      blue_dress_time = violator_songs_dict['Blue Dress']
 
-    other_total_time = round(sweetest_perfection_time + policy_of_truth_time + blue_dress_time,2)
+      other_total_time = round(sweetest_perfection_time + policy_of_truth_time + blue_dress_time,2)
 
-    print(f"А другие три песни звучат {other_total_time} минут")
+      print(f"А другие три песни звучат {other_total_time} минут")
      ```
 
 8. **`07_secret.py`**
    - **Задача:** Расшифровать заданный шифр следую подсказкам.
    - **Решение:**
      ```python
-    first = secret_message[0][3]
-    second=secret_message[1][9:13]
-    third=secret_message[2][5:15:2]
-    fourth=secret_message[3][12:6:-1]
-    fifth=secret_message[4][20:15:-1]
+      first = secret_message[0][3]
+      second=secret_message[1][9:13]
+      third=secret_message[2][5:15:2]
+      fourth=secret_message[3][12:6:-1]
+      fifth=secret_message[4][20:15:-1]
 
-    res = f"{first} {second} {third} {fourth} {fifth}"
+      res = f"{first} {second} {third} {fourth} {fifth}"
     ```
 
 9. **`08_garden.py`**
