@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+sign=','
 # Есть строка с перечислением фильмов
 
 my_favorite_movies = 'Терминатор, Пятый элемент, Аватар, Чужие, Назад в будущее'
@@ -16,12 +16,21 @@ my_favorite_movies = 'Терминатор, Пятый элемент, Ават�
 # как указано в задании!
 
 # TODO здесь ваш код
-first_film=my_favorite_movies[:10]
-last_film=my_favorite_movies[42:]
-second_film=my_favorite_movies[12:25]
-second_last_film=my_favorite_movies[35:40]
 
-print(first_film)
-print(last_film)
-print(second_film)
-print(second_last_film)
+def list_movies(fav_movie):
+    comma_positions = [-2]
+    for i in range(len(fav_movie)):
+        if fav_movie[i] == sign:
+            comma_positions.append(i)
+    comma_positions.append(len(fav_movie))
+
+    movies = [
+        fav_movie[:comma_positions[1]],
+        fav_movie[comma_positions[-2] + 2:],
+        fav_movie[comma_positions[1] + 2:comma_positions[2]],
+        fav_movie[comma_positions[-3] + 2:comma_positions[-2]],
+    ]
+    return movies
+
+for q in list_movies(my_favorite_movies):
+    print(q)
