@@ -5,7 +5,7 @@ import math
 def circleArea(radius):
     print(round(math.pi * radius**2,4))
 def insideRadius(point,radius):
-    print((point[0]**2 + point[1]**2) <=radius)
+    print(point[0]**2 + point[1]**2 <=radius**2)
 # Есть значение радиуса круга
 radius = 42
 
@@ -19,7 +19,6 @@ circleArea(radius)
 
 # Далее, пусть есть координаты точки
 point_1 = (23, 34)
-
 # где 23 - координата х, 34 - координата у
 
 # Если точка point лежит внутри того самого круга [центр в начале координат (0, 0), radius = 42],
