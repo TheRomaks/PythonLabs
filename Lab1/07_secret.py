@@ -33,11 +33,21 @@ secret_message = [
 #   Если нужны вычисления и разные пробы - делайте это в консоли пайтона, тут нужен только результат
 
 # TODO вывести расшифрованное сообщение
-first = secret_message[0][3]
-second=secret_message[1][9:13]
-third=secret_message[2][5:15:2]
-fourth=secret_message[3][12:6:-1]
-fifth=secret_message[4][20:15:-1]
+def printDecryptedMes():
+    print("Зашифрованное сообщение")
+    print(secret_message)
+    first = secret_message[0][3]
+    second=secret_message[1][9:13]
+    third=secret_message[2][5:15:2]
+    fourth=secret_message[3][12:6:-1]
+    fifth=secret_message[4][20:15:-1]
 
-res = f"{first} {second} {third} {fourth} {fifth}"
-print(res)
+    res = f"{first} {second} {third} {fourth} {fifth}"
+    print("Расшифрованное сообщение")
+    print(res)
+
+def main():
+    printDecryptedMes()
+
+if __name__ == "__main__":
+    main()

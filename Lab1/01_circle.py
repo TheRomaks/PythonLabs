@@ -3,9 +3,9 @@
 import math
 
 def circleArea(radius):
-    print(round(math.pi * radius**2,4))
+    return round(math.pi * radius**2,4)
 def insideRadius(point,radius):
-    print(point[0]**2 + point[1]**2 <=radius**2)
+    return point[0]**2 + point[1]**2 <=radius**2
 # Есть значение радиуса круга
 radius = 42
 
@@ -37,6 +37,62 @@ point_2 = (30, 30)
 # Или False, если точка лежит вовне круга.
 # TODO здесь ваш код
 insideRadius(point_2,radius)
+
+
+def userRadius():
+    while True:
+        try:
+            radius = float(input("Введите радиус круга: "))
+            return radius
+        except ValueError:
+            print("Некорректный ввод. Пожалуйста, введите числовое значение.")
+
+def userPoint():
+    """
+    Get the coordinates of a point from the user.
+
+    Returns:
+    tuple: The coordinates (x, y) of the point.
+    """
+    while True:
+        try:
+            x = float(input("Введите координату X точки: "))
+            y = float(input("Введите координату Y точки: "))
+            return (x, y)
+        except ValueError:
+            print("Некорректный ввод. Пожалуйста, введите числовые значения.")
+
+def main():
+    print("Выберите вариант:")
+    print("1. Ввести радиус и точки вручную")
+    print("2. Использовать предопределенные значения")
+    choice = input("Введите ваш выбор (1 или 2): ")
+
+    if choice == '1':
+        radius = userRadius()
+        point1 = userPoint()
+        point2 = userPoint()
+    elif choice == '2':
+        radius = 42
+        point1 = (23, 34)
+        point2 = (30, 30)
+    else:
+        print("Некорректный выбор. Используем предопределенные значения.")
+        radius = 42
+        point1 = (23, 34)
+        point2 = (30, 30)
+
+    # Calculate and print the area of the circle
+    area = circleArea(radius)
+    print(f"Площадь круга с радиусом {radius} равна: {round(area, 4)}")
+
+    # Check and print if points are inside the circle
+    print(f"Точка {point1} внутри круга: {insideRadius(point1, radius)}")
+    print(f"Точка {point2} внутри круга: {insideRadius(point2, radius)}")
+
+if __name__ == "__main__":
+    main()
+
 # Пример вывода на консоль:
 #
 # 77777.7777

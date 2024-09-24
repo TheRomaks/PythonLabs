@@ -25,15 +25,15 @@ violator_songs_list = [
 
 # TODO здесь ваш код
 
-first_songs_list=[
-    ['Halo', 4.9],
-    ['Enjoy the Silence', 4.20],
-    ['Clean', 5.83]
-]
+# first_songs_list=[
+#     ['Halo', 4.9],
+#     ['Enjoy the Silence', 4.20],
+#     ['Clean', 5.83]
+# ]
+#
+# total_time=round(sum(sumsongs[1] for sumsongs in first_songs_list),2)
 
-total_time=round(sum(sumsongs[1] for sumsongs in first_songs_list),2)
-
-print(f"Три песни звучат {total_time} минут")
+#(f"Три песни звучат {total_time} минут")
 
 # Есть словарь песен группы Depeche Mode
 violator_songs_dict = {
@@ -53,11 +53,47 @@ violator_songs_dict = {
 
 # TODO здесь ваш код
 
-sweetest_perfection_time = violator_songs_dict['Sweetest Perfection']
-policy_of_truth_time = violator_songs_dict['Policy of Truth']
-blue_dress_time = violator_songs_dict['Blue Dress']
+# sweetest_perfection_time = violator_songs_dict['Sweetest Perfection']
+# policy_of_truth_time = violator_songs_dict['Policy of Truth']
+# blue_dress_time = violator_songs_dict['Blue Dress']
+#
+# # Суммируем время звучания этих песен
+# other_total_time = round(sweetest_perfection_time + policy_of_truth_time + blue_dress_time,2)
 
-# Суммируем время звучания этих песен
-other_total_time = round(sweetest_perfection_time + policy_of_truth_time + blue_dress_time,2)
+#print(f"А другие три песни звучат {other_total_time} минут")
 
-print(f"А другие три песни звучат {other_total_time} минут")
+
+def get_songs_input():
+    songs = []
+    while True:
+        song_name = input("Введите название песни (или 'stop' для завершения): ")
+        if song_name.lower() == 'stop':
+            break
+        duration = input("Введите продолжительность песни в минутах: ")
+        songs.append([song_name, float(duration)])
+    return songs
+
+def calculate_total_time(songs, song_titles):
+    return sum(round(song[1], 2) for song in songs if song[0] in song_titles)
+
+def main():
+
+    print("Вы можете ввести свои песни и их продолжительность. Для завершения введите 'stop'.")
+    user_songs = get_songs_input()
+
+    if len(user_songs)==0:
+        user_songs = violator_songs_list
+
+    songs_to_sum_list = ['Halo', 'Enjoy the Silence', 'Clean']
+    total_time_list = calculate_total_time(user_songs, songs_to_sum_list)
+    print(f'Три песни звучат {total_time_list:.2f} минут')
+
+
+    songs_to_sum_dict = ['Sweetest Perfection', 'Policy of Truth', 'Blue Dress']
+    total_time_dict = sum(
+        round(violator_songs_dict[song], 2) for song in songs_to_sum_dict
+    )
+    print(f'А другие три песни звучат {total_time_dict:.2f} минут')
+
+if __name__ == "__main__":
+    main()

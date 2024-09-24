@@ -12,4 +12,11 @@ result = (1 + 2) * 3
 print(result)
 
 # TODO написать формулу для 1 2 3 4 5 и вывести значение на консоль
-print(1+2*(3+4+5))
+def get25():
+    print(1+2*(3+4+5))
+
+def main():
+    get25()
+
+if __name__ == "__main__":
+    main()
