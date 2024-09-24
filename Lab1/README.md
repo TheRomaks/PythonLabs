@@ -239,7 +239,7 @@
      def add_animal(zoo,index,animal):
       zoo.insert(index,animal)
 
-    def remove_animal(zoo):
+     def remove_animal(zoo):
         animal = input("Введите имя животного, которое хотите убрать: ")
         if animal in zoo:
             zoo.remove(animal)
@@ -247,32 +247,32 @@
             print("Животного нет")
 
 
-    def add_bird(birds):
+     def add_bird(birds):
         bird = input("Введите имя птицы, которую хотите добавить: ")
         birds.append(bird)
 
-    def extendAnimals(zoo,birds):
+     def extendAnimals(zoo,birds):
         zoo.extend(birds)
 
-    def remove_bird(birds):
+     def remove_bird(birds):
         bird = input("Введите имя птицы, которую хотите убрать: ")
         if bird in birds:
             birds.remove(bird)
         else:
             print("Птицы нет")
 
-    def animal_pos_for_people(zoo,animal):
+     def animal_pos_for_people(zoo,animal):
         if animal in zoo:
             print(f"{animal} находится в клетке: {zoo.index(f'{animal}') + 1}")
         else:
             print("Нет животного в зоопарке")
 
 
-    def fillList():
+     def fillList():
         user_input = input("Введите элементы через пробел")
         return user_input.split()
 
-    def main():
+     def main():
         print("Выберите вариант:")
         print("1. Ввести  вручную")
         print("2. Использовать предопределенные значения")
