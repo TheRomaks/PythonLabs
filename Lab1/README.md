@@ -7,16 +7,52 @@
     def distance(coord1, coord2):
     return ((coord1[0] - coord2[0]) ** 2 + (coord1[1] - coord2[1]) ** 2) ** 0.5
 
+    def buildDict(sities):
+        for city1 in sities:
+            distances[city1] = {}
+            for city2 in sities:
+                if city1 != city2:
+                    distances[city1][city2] = distance(sities[city1], sities[city2])
+                else:
+                    distances[city1][city2] = 0
+        return distances
 
-    for city1 in sites:
-        distances[city1] = {}
-        for city2 in sites:
-            if city1 != city2:
-                distances[city1][city2] = distance(sites[city1], sites[city2])
-            else:
-                distances[city1][city2] = 0
 
-    print(distances)
+    def userSities():
+        sities = {}
+        while True:
+            city = input("Введите название города (или 'quit' для завершения): ")
+            if city.lower() == 'quit':
+                break
+            x = int(input("Введите координату X для {}: ".format(city)))
+            y = int(input("Введите координату Y для {}: ".format(city)))
+            sities[city] = (x, y)
+        return sities
+
+
+    def predefinedSites():
+        return sites
+
+    def main():
+        print("Выберите вариант:")
+        print("1. Ввести города и координаты вручную")
+        print("2. Использовать предопределенные города")
+        choice = input("Введите ваш выбор (1 или 2): ")
+
+        if choice == '1':
+            sites = userSities()
+        elif choice == '2':
+            sites = predefinedSites()
+        else:
+            print("Некорректный выбор. Используем предопределенные города.")
+            sites = predefinedSites()
+
+        distances = buildDict(sites)
+        print(distances)
+
+
+    if __name__ == "__main__":
+        main()
    ```
 
 2. **`01_circle.py`**
@@ -26,23 +62,67 @@
     - Аналогично для другой точки
     - **Решение:**
     ```python
-    def circleArea(radius):
-        print(round(math.pi * radius**2,4))
-    def insideRadius(point,radius):
-        print((point[0]**2 + point[1]**2) <=radius)
-    radius = 42
-    circleArea(radius)
-    point_1 = (23, 34)
-    insideRadius(point_1,radius)
-    point_2 = (30, 30)
-    insideRadius(point_2,radius)
+    def userRadius():
+    while True:
+        try:
+            radius = float(input("Введите радиус круга: "))
+            return radius
+        except ValueError:
+            print("Некорректный ввод. Пожалуйста, введите числовое значение.")
+
+    def userPoint():
+        while True:
+            try:
+                x = float(input("Введите координату X точки: "))
+                y = float(input("Введите координату Y точки: "))
+                return (x, y)
+            except ValueError:
+                print("Некорректный ввод. Пожалуйста, введите числовые значения.")
+
+    def main():
+        print("Выберите вариант:")
+        print("1. Ввести радиус и точки вручную")
+        print("2. Использовать предопределенные значения")
+        choice = input("Введите ваш выбор (1 или 2): ")
+
+        if choice == '1':
+            radius = userRadius()
+            point1 = userPoint()
+            point2 = userPoint()
+        elif choice == '2':
+            radius = 42
+            point1 = (23, 34)
+            point2 = (30, 30)
+        else:
+            print("Некорректный выбор. Используем предопределенные значения.")
+            radius = 42
+            point1 = (23, 34)
+            point2 = (30, 30)
+
+        # Calculate and print the area of the circle
+        area = circleArea(radius)
+        print(f"Площадь круга с радиусом {radius} равна: {round(area, 4)}")
+
+        # Check and print if points are inside the circle
+        print(f"Точка {point1} внутри круга: {insideRadius(point1, radius)}")
+        print(f"Точка {point2} внутри круга: {insideRadius(point2, radius)}")
+
+    if __name__ == "__main__":
+        main()
     ```
 
 3. **`02_operations.py`**
    - **Задача:** Расставьте знаки операций "плюс", "минус", "умножение" и скобки между числами "1 2 3 4 5" так, что бы получилось число "25"
    - **Решение:**
    ```python
-   print(1+2*(3+4+5))
+   def get25():
+    print(1+2*(3+4+5))
+
+  def main():
+      get25()
+
+  if __name__ == "__main__":
+      main()
    ```
 
 4. **`03_my_favorite_movies.py`**
@@ -56,17 +136,45 @@
     - **Решение:**
     - **Решение:**
     ```python
-    my_favorite_movies = 'Терминатор, Пятый элемент, Аватар, Чужие, Назад в будущее'
+    def list_movies(fav_movie):
+    comma_positions = [-2]
+    for i in range(len(fav_movie)):
+        if fav_movie[i] == sign:
+            comma_positions.append(i)
+    comma_positions.append(len(fav_movie))
 
-    first_film=my_favorite_movies[:10]
-    last_film=my_favorite_movies[42:]
-    second_film=my_favorite_movies[12:25]
-    second_last_film=my_favorite_movies[35:40]
+    movies = [
+        fav_movie[:comma_positions[1]],
+        fav_movie[comma_positions[-2] + 2:],
+        fav_movie[comma_positions[1] + 2:comma_positions[2]],
+        fav_movie[comma_positions[-3] + 2:comma_positions[-2]],
+    ]
+    return movies
+    def userInput():
+        my_fav_movies=input("Введите ваши любимые фильмы:")
+        return  my_fav_movies
+    def printMovies(films):
+        for q in list_movies(films):
+            print(q)
 
-    print(first_film)
-    print(last_film)
-    print(second_film)
-    print(second_last_film)
+    def main():
+        print("Выберите вариант:")
+        print("1. Ввести фильмы вручную")
+        print("2. Использовать предопределенные")
+        choice = input("Введите ваш выбор (1 или 2): ")
+
+        if choice == '1':
+            films=userInput()
+        elif choice == '2':
+            films=my_favorite_movies
+        else:
+            print("Некорректный выбор. Используем предопределенные фильмы.")
+            films=my_favorite_movies
+        printMovies(films)
+
+
+    if __name__ == "__main__":
+        main()
     ```
 
 5. **`04_my_family.py`**
@@ -75,16 +183,49 @@
      - Выведите на консоль общий рост вашей семьи как сумму ростов всех членов
    - **Решение:**
     ```python
-    my_family_height = [
-    # ['имя', рост],
-    ['Папа', 175],
-    ['Мама', 170],
-    ['Брат', 183]
-    ]
-    print(f'Рост отца - {my_family_height[0][1]} см')
+      def get_family_data():
+      my_family = []
+      my_family_height = []
 
-    heightSum=sum([familymember[1] for familymember in my_family_height])
-    print(f'Общий рост семьи - {heightSum} см')
+      num_members = int(input("Введите количество членов семьи: "))
+
+      for _ in range(num_members):
+          name = input("Введите имя члена семьи: ")
+          height = int(input(f"Введите рост {name} в см: "))
+          my_family.append(name)
+          my_family_height.append([name, height])
+
+      return my_family, my_family_height
+
+
+    def familyInfo(my_family_height):
+        father_height = next((height for name, height in my_family_height if name == 'Папа'), 'не найден')
+        print(f'Рост отца - {father_height} см')
+
+        total_height = sum(member[1] for member in my_family_height)
+        print(f'Общий рост моей семьи - {total_height} см')
+
+
+    def main():
+        print("Выберите вариант:")
+        print("1. Ввести радиус и точки вручную")
+        print("2. Использовать предопределенные значения")
+        choice = input("Введите ваш выбор (1 или 2): ")
+
+
+        if choice == '1':
+            myFamily, myFamilyHeight = get_family_data()
+            familyInfo(myFamilyHeight)
+        elif choice == '2':
+            myFamily, myFamilyHeight=my_family,my_family_height
+            familyInfo(myFamilyHeight)
+        else:
+            print("Некорректный выбор. Используем предопределенные значения.")
+            myFamily, myFamilyHeight = my_family, my_family_height
+            familyInfo(myFamilyHeight)
+
+    if __name__ == "__main__":
+        main()
     ```
 
 6. **`05_zoo.py`**
@@ -95,16 +236,71 @@
      - Выведите на консоль в какой клетке сидит лев (lion) и жаворонок (lark).
    - **Решение:**
      ```python
-     zoo.insert(1, 'bear')
-     print(zoo)
-     zoo.extend(birds)
-     print(zoo)
-     zoo.remove('elephant')
-     print(zoo)
-     lion_index_for_people = zoo.index('lion') + 1
-     lark_index_for_people = zoo.index('lark') + 1
-     print(f"Лев сидит в клетке {lion_index_for_people}")
-     print(f"Жаворонок сидит в клетке {lark_index_for_people}")
+     def add_animal(zoo,index,animal):
+      zoo.insert(index,animal)
+
+    def remove_animal(zoo):
+        animal = input("Введите имя животного, которое хотите убрать: ")
+        if animal in zoo:
+            zoo.remove(animal)
+        else:
+            print("Животного нет")
+
+
+    def add_bird(birds):
+        bird = input("Введите имя птицы, которую хотите добавить: ")
+        birds.append(bird)
+
+    def extendAnimals(zoo,birds):
+        zoo.extend(birds)
+
+    def remove_bird(birds):
+        bird = input("Введите имя птицы, которую хотите убрать: ")
+        if bird in birds:
+            birds.remove(bird)
+        else:
+            print("Птицы нет")
+
+    def animal_pos_for_people(zoo,animal):
+        if animal in zoo:
+            print(f"{animal} находится в клетке: {zoo.index(f'{animal}') + 1}")
+        else:
+            print("Нет животного в зоопарке")
+
+
+    def fillList():
+        user_input = input("Введите элементы через пробел")
+        return user_input.split()
+
+    def main():
+        print("Выберите вариант:")
+        print("1. Ввести  вручную")
+        print("2. Использовать предопределенные значения")
+        choice = input("Введите ваш выбор (1 или 2): ")
+
+        if choice == '1':
+            print("Введите животных в зоопарке:")
+            zoo_list=fillList()
+            print("Введите птиц:")
+            birds_list=fillList()
+        elif choice == '2':
+            zoo_list=zoo
+            birds_list=birds
+        else:
+            print("Некорректный выбор. Используем предопределенные значения.")
+            zoo_list = zoo
+            birds_list = birds
+        add_animal(zoo_list,1,'bear')
+        print(zoo_list)
+        extendAnimals(zoo_list,birds_list)
+        print(zoo_list)
+        remove_animal(zoo_list)
+        print(zoo_list)
+        animal_pos_for_people(zoo_list,"bear")
+
+
+      if __name__ == "__main__":
+            main()
      ```
 
 7. **`06_songs_list.py`**
@@ -113,36 +309,54 @@
      - Распечатайте общее время звучания трех песен: 'Sweetest Perfection', 'Policy of Truth' и 'Blue Dress'
    - **Решение:**
      ```python
-      first_songs_list=[
-      ['Halo', 4.9],
-      ['Enjoy the Silence', 4.20],
-      ['Clean', 5.83]
-      ]
+      def calculate_total_time(songs):
+    return round(sum(song[1] for song in songs), 2)
 
-      total_time=round(sum(sumsongs[1] for sumsongs in first_songs_list),2)
+      def main():
+          print("Доступные песни:")
+          for idx, song in enumerate(violator_songs_list):
+              print(f"{idx + 1}. {song[0]} - {song[1]} минут")
 
-      print(f"Три песни звучат {total_time} минут")
-      
-      sweetest_perfection_time = violator_songs_dict['Sweetest Perfection']
-      policy_of_truth_time = violator_songs_dict['Policy of Truth']
-      blue_dress_time = violator_songs_dict['Blue Dress']
+          # Запрос у пользователя на выбор песен
+          selected_indices = input("Введите номера песен через запятую (например, 1,3,5): ")
+          selected_indices = [int(idx.strip()) - 1 for idx in selected_indices.split(',')]
 
-      other_total_time = round(sweetest_perfection_time + policy_of_truth_time + blue_dress_time,2)
+          # Формирование списка выбранных песен
+          selected_songs = [violator_songs_list[idx] for idx in selected_indices if 0 <= idx < len(violator_songs_list)]
 
-      print(f"А другие три песни звучат {other_total_time} минут")
+          # Расчет общего времени
+          total_time = calculate_total_time(selected_songs)
+
+          # Вывод результата
+          print(f"Общее время звучания выбранных песен: {total_time} минут")
+
+    if __name__ == "__main__":
+        main()
      ```
 
 8. **`07_secret.py`**
    - **Задача:** Расшифровать заданный шифр следую подсказкам.
    - **Решение:**
      ```python
-      first = secret_message[0][3]
-      second=secret_message[1][9:13]
-      third=secret_message[2][5:15:2]
-      fourth=secret_message[3][12:6:-1]
-      fifth=secret_message[4][20:15:-1]
+      def printDecryptedMes():
+        print("Зашифрованное сообщение")
+        print(secret_message)
+        first = secret_message[0][3]
+        second=secret_message[1][9:13]
+        third=secret_message[2][5:15:2]
+        fourth=secret_message[3][12:6:-1]
+        fifth=secret_message[4][20:15:-1]
 
-      res = f"{first} {second} {third} {fourth} {fifth}"
+        res = f"{first} {second} {third} {fourth} {fifth}"
+        print("Расшифрованное сообщение")
+        print(res)
+
+      def main():
+          printDecryptedMes()
+
+      if __name__ == "__main__":
+          main()
+
     ```
 
 9. **`08_garden.py`**
@@ -154,20 +368,57 @@
      - Выведите на консоль те, которые растут на лугу, но не растут в саду
    - **Решение:**
      ```python
-     garden_set = set(garden)
-     meadow_set = set(meadow)
-    
-     all_flowers = garden_set.union(meadow_set)
-     print("Все виды цветов:", all_flowers)
-    
-     common_flowers = garden_set.intersection(meadow_set)
-     print("Цветы, растущие и там, и там:", common_flowers)
-    
-     garden_only = garden_set.difference(meadow_set)
-     print("Цветы, растущие только в саду:", garden_only)
-    
-     meadow_only = meadow_set.difference(garden_set)
-     print("Цветы, растущие только на лугу:", meadow_only)
+    def createSet(listsmth):
+        return set(listsmth)
+
+    def uniteSets(set1, set2):
+          return set1.union(set2)
+
+    def intersectionsSets(set1, set2):
+          return set1.intersection(set2)
+
+    def diffSets(set1, set2):
+          return set1.difference(set2)
+
+    def userSet():
+          user_input = input("Введите элементы через пробел")
+          return set(user_input.split())
+
+    def main():
+          print("Выберите вариант:")
+          print("1. Ввести  вручную")
+          print("2. Использовать предопределенные значения")
+          choice = input("Введите ваш выбор (1 или 2): ")
+
+          if choice == '1':
+              print("Сад:")
+              oldGarden=userSet()
+              print("Луг:")
+              oldmeadow=userSet()
+              print(oldGarden)
+              print(oldmeadow)
+          elif choice == '2':
+              oldGarden=createSet(garden)
+              oldmeadow=createSet(meadow)
+              print(oldGarden)
+              print(oldmeadow)
+          else:
+              print("Некорректный выбор. Используем предопределенные значения.")
+              oldGarden = garden
+              oldmeadow = meadow
+              print(oldGarden)
+              print(oldmeadow)
+          unitedSet = uniteSets(oldmeadow, oldGarden)
+          print(unitedSet)
+          intersect = intersectionsSets(oldGarden, oldmeadow)
+          print(intersect)
+          diffm = diffSets(oldmeadow, oldGarden)
+          diffg = diffSets(oldGarden, oldmeadow)
+          print(f"{diffm}\n{diffg}")
+
+
+    if __name__ == "__main__":
+          main()
      ```
 
 10. **`09_shopping.py`**
