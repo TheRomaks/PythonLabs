@@ -17,12 +17,12 @@ my_family_height = [
 
 # Выведите на консоль рост отца в формате
 #   Рост отца - ХХ см
-print(f'Рост отца - {my_family_height[0][1]} см')
-
-# Выведите на консоль общий рост вашей семьи как сумму ростов всех членов
-#   Общий рост моей семьи - ХХ см
-heightSum=sum([familymember[1] for familymember in my_family_height])
-print(f'Общий рост семьи - {heightSum} см')
+# print(f'Рост отца - {my_family_height[0][1]} см')
+#
+# # Выведите на консоль общий рост вашей семьи как сумму ростов всех членов
+# #   Общий рост моей семьи - ХХ см
+# heightSum=sum([familymember[1] for familymember in my_family_height])
+# print(f'Общий рост семьи - {heightSum} см')
 
 def get_family_data():
     my_family = []
