@@ -8,32 +8,37 @@ from _songs_list import main as song
 from _secret import main as secr
 from _garden import main as gard
 
+tasks = [
+    {"name": "Расстония между городами", "function": dist},
+    {"name": "Задачи с окружностью", "function": circ},
+    {"name": "Получить 25 из 5 цифр", "function": oper},
+    {"name": "Показать любимые фильмы", "function": fav_mov},
+    {"name": "Показать информацию о семье", "function": fam},
+    {"name": "Работа в зоопарке", "function": zoo},
+    {"name": "Списки песен", "function": song},
+    {"name": "Расшифровка секретного сообщения", "function": secr},
+    {"name": "Работа в саду", "function": gard}
+]
+
+def display_menu():
+    print("\nМеню задач:")
+    for i, task in enumerate(tasks, start=1):
+        print(f"{i}. {task['name']}")
+
 def main():
-    tasks = [
-        {"name": "Расстония между городами", "function": dist()},
-        {"name": "Задачи с окружностью", "function": circ()},
-        {"name": "Получить 25 из 5 цифр", "function": oper()},
-        {"name": "Показать любимые фильмы", "function": fav_mov()},
-        {"name": "Показать информацию о семье", "function": fam()},
-        {"name": "Работа в зоопарке", "function": zoo()},
-        {"name": "Списки песен", "function": song()},
-        {"name": "Расшифровка секретного сообщения", "function": secr()},
-        {"name": "Работа в саду", "function": gard()}
-    ]
-
     while True:
-        print("Выберите задание:")
-        for i, task in enumerate(tasks, 1):
-            print(f"{i}. {task['name']}")
-
-        choice = input("Введите номер задания (или 'quit' для выхода): ")
-        if choice == 'quit':
-            return
-
-        if choice.isdigit() and 1 <= int(choice) <= len(tasks):
-            tasks[int(choice) - 1]["function"]()
-        else:
-            print("Данного задания нет в списке или вы ввели не число")
+        display_menu()
+        choice = input("Выберите задачу (или введите 'quit' для выхода): ")
+        if choice.lower() == 'quit':
+            break
+        try:
+            choice = int(choice)
+            if 1 <= choice <= len(tasks):
+                tasks[choice - 1]["function"]()
+            else:
+                print("Некорректный выбор. Попробуйте снова.")
+        except ValueError:
+            print("Некорректный ввод. Попробуйте снова.")
 
 if __name__ == "__main__":
     main()

@@ -48,12 +48,6 @@ def userRadius():
             print("Некорректный ввод. Пожалуйста, введите числовое значение.")
 
 def userPoint():
-    """
-    Get the coordinates of a point from the user.
-
-    Returns:
-    tuple: The coordinates (x, y) of the point.
-    """
     while True:
         try:
             x = float(input("Введите координату X точки: "))

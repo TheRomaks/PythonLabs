@@ -62,38 +62,26 @@ violator_songs_dict = {
 
 #print(f"А другие три песни звучат {other_total_time} минут")
 
-
-def get_songs_input():
-    songs = []
-    while True:
-        song_name = input("Введите название песни (или 'stop' для завершения): ")
-        if song_name.lower() == 'stop':
-            break
-        duration = input("Введите продолжительность песни в минутах: ")
-        songs.append([song_name, float(duration)])
-    return songs
-
-def calculate_total_time(songs, song_titles):
-    return sum(round(song[1], 2) for song in songs if song[0] in song_titles)
+def calculate_total_time(songs):
+    return round(sum(song[1] for song in songs), 2)
 
 def main():
+    print("Доступные песни:")
+    for idx, song in enumerate(violator_songs_list):
+        print(f"{idx + 1}. {song[0]} - {song[1]} минут")
 
-    print("Вы можете ввести свои песни и их продолжительность. Для завершения введите 'stop'.")
-    user_songs = get_songs_input()
+    # Запрос у пользователя на выбор песен
+    selected_indices = input("Введите номера песен через запятую (например, 1,3,5): ")
+    selected_indices = [int(idx.strip()) - 1 for idx in selected_indices.split(',')]
 
-    if len(user_songs)==0:
-        user_songs = violator_songs_list
+    # Формирование списка выбранных песен
+    selected_songs = [violator_songs_list[idx] for idx in selected_indices if 0 <= idx < len(violator_songs_list)]
 
-    songs_to_sum_list = ['Halo', 'Enjoy the Silence', 'Clean']
-    total_time_list = calculate_total_time(user_songs, songs_to_sum_list)
-    print(f'Три песни звучат {total_time_list:.2f} минут')
+    # Расчет общего времени
+    total_time = calculate_total_time(selected_songs)
 
-
-    songs_to_sum_dict = ['Sweetest Perfection', 'Policy of Truth', 'Blue Dress']
-    total_time_dict = sum(
-        round(violator_songs_dict[song], 2) for song in songs_to_sum_dict
-    )
-    print(f'А другие три песни звучат {total_time_dict:.2f} минут')
+    # Вывод результата
+    print(f"Общее время звучания выбранных песен: {total_time} минут")
 
 if __name__ == "__main__":
     main()
