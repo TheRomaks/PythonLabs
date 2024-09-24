@@ -118,11 +118,11 @@
    def get25():
     print(1+2*(3+4+5))
 
-  def main():
-      get25()
+   def main():
+        get25()
 
-  if __name__ == "__main__":
-      main()
+   if __name__ == "__main__":
+        main()
    ```
 
 4. **`03_my_favorite_movies.py`**
