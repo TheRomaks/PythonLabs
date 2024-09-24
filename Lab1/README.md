@@ -236,70 +236,70 @@
      - Выведите на консоль в какой клетке сидит лев (lion) и жаворонок (lark).
    - **Решение:**
      ```python
-     def add_animal(zoo,index,animal):
-      zoo.insert(index,animal)
+        def add_animal(zoo,index,animal):
+            zoo.insert(index,animal)
 
-     def remove_animal(zoo):
-        animal = input("Введите имя животного, которое хотите убрать: ")
-        if animal in zoo:
-            zoo.remove(animal)
-        else:
-            print("Животного нет")
-
-
-     def add_bird(birds):
-        bird = input("Введите имя птицы, которую хотите добавить: ")
-        birds.append(bird)
-
-     def extendAnimals(zoo,birds):
-        zoo.extend(birds)
-
-     def remove_bird(birds):
-        bird = input("Введите имя птицы, которую хотите убрать: ")
-        if bird in birds:
-            birds.remove(bird)
-        else:
-            print("Птицы нет")
-
-     def animal_pos_for_people(zoo,animal):
-        if animal in zoo:
-            print(f"{animal} находится в клетке: {zoo.index(f'{animal}') + 1}")
-        else:
-            print("Нет животного в зоопарке")
+        def remove_animal(zoo):
+            animal = input("Введите имя животного, которое хотите убрать: ")
+            if animal in zoo:
+                zoo.remove(animal)
+            else:
+                print("Животного нет")
 
 
-     def fillList():
-        user_input = input("Введите элементы через пробел")
-        return user_input.split()
+        def add_bird(birds):
+            bird = input("Введите имя птицы, которую хотите добавить: ")
+            birds.append(bird)
 
-     def main():
-        print("Выберите вариант:")
-        print("1. Ввести  вручную")
-        print("2. Использовать предопределенные значения")
-        choice = input("Введите ваш выбор (1 или 2): ")
+        def extendAnimals(zoo,birds):
+            zoo.extend(birds)
 
-        if choice == '1':
-            print("Введите животных в зоопарке:")
-            zoo_list=fillList()
-            print("Введите птиц:")
-            birds_list=fillList()
-        elif choice == '2':
-            zoo_list=zoo
-            birds_list=birds
-        else:
-            print("Некорректный выбор. Используем предопределенные значения.")
-            zoo_list = zoo
-            birds_list = birds
-        add_animal(zoo_list,1,'bear')
-        print(zoo_list)
-        extendAnimals(zoo_list,birds_list)
-        print(zoo_list)
-        remove_animal(zoo_list)
-        print(zoo_list)
-        animal_pos_for_people(zoo_list,"bear")
+        def remove_bird(birds):
+            bird = input("Введите имя птицы, которую хотите убрать: ")
+            if bird in birds:
+                birds.remove(bird)
+            else:
+                print("Птицы нет")
+
+        def animal_pos_for_people(zoo,animal):
+            if animal in zoo:
+                print(f"{animal} находится в клетке: {zoo.index(f'{animal}') + 1}")
+            else:
+                print("Нет животного в зоопарке")
 
 
-      if __name__ == "__main__":
+        def fillList():
+            user_input = input("Введите элементы через пробел")
+            return user_input.split()
+
+        def main():
+            print("Выберите вариант:")
+            print("1. Ввести  вручную")
+            print("2. Использовать предопределенные значения")
+            choice = input("Введите ваш выбор (1 или 2): ")
+
+            if choice == '1':
+                print("Введите животных в зоопарке:")
+                zoo_list=fillList()
+                print("Введите птиц:")
+                birds_list=fillList()
+            elif choice == '2':
+                zoo_list=zoo
+                birds_list=birds
+            else:
+                print("Некорректный выбор. Используем предопределенные значения.")
+                zoo_list = zoo
+                birds_list = birds
+            add_animal(zoo_list,1,'bear')
+            print(zoo_list)
+            extendAnimals(zoo_list,birds_list)
+            print(zoo_list)
+            remove_animal(zoo_list)
+            print(zoo_list)
+            animal_pos_for_people(zoo_list,"bear")
+
+
+        if __name__ == "__main__":
             main()
      ```
 
@@ -309,29 +309,29 @@
      - Распечатайте общее время звучания трех песен: 'Sweetest Perfection', 'Policy of Truth' и 'Blue Dress'
    - **Решение:**
      ```python
-      def calculate_total_time(songs):
-    return round(sum(song[1] for song in songs), 2)
+        def calculate_total_time(songs):
+            return round(sum(song[1] for song in songs), 2)
 
-      def main():
-          print("Доступные песни:")
-          for idx, song in enumerate(violator_songs_list):
-              print(f"{idx + 1}. {song[0]} - {song[1]} минут")
+        def main():
+            print("Доступные песни:")
+            for idx, song in enumerate(violator_songs_list):
+                print(f"{idx + 1}. {song[0]} - {song[1]} минут")
 
-          # Запрос у пользователя на выбор песен
-          selected_indices = input("Введите номера песен через запятую (например, 1,3,5): ")
-          selected_indices = [int(idx.strip()) - 1 for idx in selected_indices.split(',')]
+            # Запрос у пользователя на выбор песен
+            selected_indices = input("Введите номера песен через запятую (например, 1,3,5): ")
+            selected_indices = [int(idx.strip()) - 1 for idx in selected_indices.split(',')]
 
-          # Формирование списка выбранных песен
-          selected_songs = [violator_songs_list[idx] for idx in selected_indices if 0 <= idx < len(violator_songs_list)]
+            # Формирование списка выбранных песен
+            selected_songs = [violator_songs_list[idx] for idx in selected_indices if 0 <= idx < len(violator_songs_list)]
 
-          # Расчет общего времени
-          total_time = calculate_total_time(selected_songs)
+            # Расчет общего времени
+            total_time = calculate_total_time(selected_songs)
 
-          # Вывод результата
-          print(f"Общее время звучания выбранных песен: {total_time} минут")
+            # Вывод результата
+            print(f"Общее время звучания выбранных песен: {total_time} минут")
 
-    if __name__ == "__main__":
-        main()
+        if __name__ == "__main__":
+            main()
      ```
 
 8. **`07_secret.py`**
@@ -356,9 +356,7 @@
 
       if __name__ == "__main__":
           main()
-
-    ```
-
+     ```
 9. **`08_garden.py`**
    - **Задача:** 
      - Создайте множество цветов, произрастающих в саду и на лугу
@@ -368,57 +366,57 @@
      - Выведите на консоль те, которые растут на лугу, но не растут в саду
    - **Решение:**
      ```python
-    def createSet(listsmth):
-        return set(listsmth)
+        def createSet(listsmth):
+            return set(listsmth)
 
-    def uniteSets(set1, set2):
-          return set1.union(set2)
+        def uniteSets(set1, set2):
+            return set1.union(set2)
 
-    def intersectionsSets(set1, set2):
-          return set1.intersection(set2)
+        def intersectionsSets(set1, set2):
+            return set1.intersection(set2)
 
-    def diffSets(set1, set2):
-          return set1.difference(set2)
+        def diffSets(set1, set2):
+            return set1.difference(set2)
 
-    def userSet():
-          user_input = input("Введите элементы через пробел")
-          return set(user_input.split())
+        def userSet():
+            user_input = input("Введите элементы через пробел")
+            return set(user_input.split())
 
-    def main():
-          print("Выберите вариант:")
-          print("1. Ввести  вручную")
-          print("2. Использовать предопределенные значения")
-          choice = input("Введите ваш выбор (1 или 2): ")
+        def main():
+            print("Выберите вариант:")
+            print("1. Ввести  вручную")
+            print("2. Использовать предопределенные значения")
+            choice = input("Введите ваш выбор (1 или 2): ")
 
-          if choice == '1':
-              print("Сад:")
-              oldGarden=userSet()
-              print("Луг:")
-              oldmeadow=userSet()
-              print(oldGarden)
-              print(oldmeadow)
-          elif choice == '2':
-              oldGarden=createSet(garden)
-              oldmeadow=createSet(meadow)
-              print(oldGarden)
-              print(oldmeadow)
-          else:
-              print("Некорректный выбор. Используем предопределенные значения.")
-              oldGarden = garden
-              oldmeadow = meadow
-              print(oldGarden)
-              print(oldmeadow)
-          unitedSet = uniteSets(oldmeadow, oldGarden)
-          print(unitedSet)
-          intersect = intersectionsSets(oldGarden, oldmeadow)
-          print(intersect)
-          diffm = diffSets(oldmeadow, oldGarden)
-          diffg = diffSets(oldGarden, oldmeadow)
-          print(f"{diffm}\n{diffg}")
+            if choice == '1':
+                print("Сад:")
+                oldGarden=userSet()
+                print("Луг:")
+                oldmeadow=userSet()
+                print(oldGarden)
+                print(oldmeadow)
+            elif choice == '2':
+                oldGarden=createSet(garden)
+                oldmeadow=createSet(meadow)
+                print(oldGarden)
+                print(oldmeadow)
+            else:
+                print("Некорректный выбор. Используем предопределенные значения.")
+                oldGarden = garden
+                oldmeadow = meadow
+                print(oldGarden)
+                print(oldmeadow)
+            unitedSet = uniteSets(oldmeadow, oldGarden)
+            print(unitedSet)
+            intersect = intersectionsSets(oldGarden, oldmeadow)
+            print(intersect)
+            diffm = diffSets(oldmeadow, oldGarden)
+            diffg = diffSets(oldGarden, oldmeadow)
+            print(f"{diffm}\n{diffg}")
 
 
-    if __name__ == "__main__":
-          main()
+        if __name__ == "__main__":
+            main()
      ```
 
 10. **`09_shopping.py`**
