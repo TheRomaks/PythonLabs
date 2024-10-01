@@ -48,4 +48,30 @@ sweets = {
         {'shop': 'магнит', 'price': 62.99},
     ]
 }
-# Указать надо только по 2 магазина с минимальными ценами
+#из магнита
+def select_sweets_from_shop(sweets):
+    magnit_sweets = {}
+    for sweet, shops in sweets.items():
+        selected_shops = [shop for shop in shops if shop['shop'] == 'магнит']
+        if selected_shops:
+            magnit_sweets[sweet] = selected_shops
+    return magnit_sweets
+
+def print_sweets(magnit_sweets):
+    for sweet, shops in magnit_sweets.items():
+        print(f"{sweet}:")
+       for shop in shops:
+            print(f"  - {shop['shop']}: {shop['price']}")
+
+def main():
+    selected_sweets = select_sweets_from_shop(sweets)
+    print_sweets(selected_sweets)
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+

@@ -7,7 +7,7 @@ def circleArea(radius):
 def insideRadius(point,radius):
     return point[0]**2 + point[1]**2 <=radius**2
 # Есть значение радиуса круга
-radius = 42
+# radius = 42
 
 # Выведите на консоль значение прощади этого круга с точностю до 4-х знаков после запятой
 # подсказки:
@@ -15,7 +15,7 @@ radius = 42
 #       пи возьмите равным 3.1415926
 #       точность указывается в функции round()
 # TODO здесь ваш код
-circleArea(radius)
+# circleArea(radius)
 
 # Далее, пусть есть координаты точки
 point_1 = (23, 34)
@@ -29,14 +29,14 @@ point_1 = (23, 34)
 #       квадратный корень - это возведение в степень 0.5
 #       операции сравнения дают булевы константы True и False
 # TODO здесь ваш код
-insideRadius(point_1,radius)
+# insideRadius(point_1,radius)
 
 # Аналогично для другой точки
 point_2 = (30, 30)
 # Если точка point_2 лежит внутри круга (radius = 42), то выведите на консоль True,
 # Или False, если точка лежит вовне круга.
 # TODO здесь ваш код
-insideRadius(point_2,radius)
+# insideRadius(point_2,radius)
 
 
 def userRadius():
