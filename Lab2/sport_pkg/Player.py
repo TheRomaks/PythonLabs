@@ -1,7 +1,6 @@
 from .Statistics import Statistics
 
 
-# Класс Игрок
 class Player(Statistics):
     def __init__(self, name: str, goals: int = 0, assists: int = 0):
         self.name = name

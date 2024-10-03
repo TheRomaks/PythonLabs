@@ -2,8 +2,6 @@ from typing import List
 from .Player import Player
 from .Statistics import Statistics
 
-
-# Класс Команда
 class Team(Statistics):
     def __init__(self, name: str, players: List[Player] = None):
         self.name = name
