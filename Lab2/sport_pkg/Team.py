@@ -44,4 +44,10 @@ class Team(Statistics):
         return len(self.players)
 
     def __str__(self):
-        return f"Команда {self.name} с составом {self.players}"
+        if not self.players:
+            players_str = "пустой состав"
+        elif len(self.players) == 1:
+            players_str = str(self.players)
+        else:
+            players_str = ", ".join(str(player.name) for player in self.players)
+        return f"Команда {self.name} с составом: {players_str}"

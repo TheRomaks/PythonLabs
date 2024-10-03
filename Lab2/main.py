@@ -1,4 +1,7 @@
+from docx import Document
 from sport_pkg import Player,Team,Match
+
+
 
 def main():
     teams = []
@@ -21,7 +24,12 @@ def main():
             team_name = input("Введите название команды: ")
             team = Team(team_name)
             teams.append(team)
-            print(f"Команда {team_name} создана.")
+            result=f"Команда {team_name} создана."
+            print(result)
+            save_choice=input("Сохранить результат в word?")
+            if save_choice=="Yes":
+                save_docs(result)
+
 
         elif choice == "2":
             if not teams:
@@ -44,7 +52,11 @@ def main():
             player = Player(player_name, goals, assists)
             teams[team_choice].add_player(player)
             players.append(player)
-            print(f"Игрок {player_name} добавлен в команду {teams[team_choice].name} .")
+            result=f"Игрок {player_name} добавлен в команду {teams[team_choice].name} ."
+            print(result)
+            save_choice = input("Сохранить результат в word?")
+            if save_choice=="Yes":
+                save_docs(result)
 
         elif choice == "3":
             if len(teams) < 2:
@@ -67,7 +79,11 @@ def main():
 
             match = Match(teams[team1_choice], teams[team2_choice], score1, score2)
             matches.append(match)
-            print(f"Match between {teams[team1_choice].name} and {teams[team2_choice].name} created successfully.")
+            result=f"Match between {teams[team1_choice].name} and {teams[team2_choice].name} created successfully."
+            print(result)
+            save_choice = input("Сохранить результат в word?")
+            if save_choice == "Yes":
+                save_docs(result)
 
         elif choice == "4":
             if not teams:
@@ -83,7 +99,11 @@ def main():
                 print("Ошибка в выборе команды.")
                 continue
 
-            print(teams[team_choice].calculate_statistics())
+            result=teams[team_choice].calculate_statistics()
+            print(result)
+            save_choice = input("Сохранить результат в word?")
+            if save_choice == "Yes":
+                save_docs(result)
 
         elif choice == "5":
             if not players:
@@ -99,7 +119,11 @@ def main():
                 print("Ошибка в выборе игрока.")
                 continue
 
-            print(players[player_choice].calculate_statistics())
+            result=players[player_choice].calculate_statistics()
+            print(result)
+            save_choice = input("Сохранить результат в word?")
+            if save_choice == "Yes":
+                save_docs(result)
 
         elif choice == "6":
             if not matches:
@@ -115,7 +139,12 @@ def main():
                 print("Ошибка в выборе матча.")
                 continue
 
-            print(matches[match_choice].calculate_statistics())
+            result=matches[match_choice].calculate_statistics()
+            print(result)
+
+            save_choice = input("Сохранить результат в word?")
+            if save_choice == "Yes":
+                save_docs(result)
 
         elif choice == "7":
             print("Выход.")
@@ -123,6 +152,12 @@ def main():
 
         else:
             print("Ошибка. Выберите номер из списка")
+
+def save_docs(result):
+    doc = Document()
+    doc.add_paragraph(result)
+    doc.save("document.docx")
+    print("Файл сохранен")
 
 if __name__ == "__main__":
     main()
