@@ -27,4 +27,9 @@ class DB:
             print(f"Error:{str(e)}")
             return None
 
+    def close_connection(self, conn):
+        if conn:
+            conn.close()
+            print("Database connection closed.")
+
 
