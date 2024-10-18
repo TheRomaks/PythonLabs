@@ -32,7 +32,7 @@ class DB:
     def close_connection(self,conn):
         if conn is not None:
             conn.close()
-            print("Database connection closed.")
+            print("PG connection closed.")
 
     def insert_data(self,conn, type: str, name: str, ingredients: str, instructions: str):
         try:

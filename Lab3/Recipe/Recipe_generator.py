@@ -1,6 +1,6 @@
 import random
 
-from Lab3.Database.db import DB
+from Lab3.PG.db import DB
 from Lab3.errors.db_error import DBError
 from Recipe import Recipe
 

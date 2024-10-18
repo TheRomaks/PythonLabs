@@ -4,7 +4,7 @@ import random
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, \
     QLineEdit, QTextEdit, QPushButton, QLabel, QDialogButtonBox, QDialog
 
-from Lab3.Database.db import DB
+from Lab3.PG.db import DB
 from Lab3.errors.db_error import DBError
 from Recipe.Recipe import Recipe
 from errors.recipe_error import InvalidIngredientError
