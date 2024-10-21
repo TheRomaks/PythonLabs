@@ -4,12 +4,12 @@ import random
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, \
     QLineEdit, QTextEdit, QPushButton, QLabel, QDialogButtonBox, QDialog
 
-from Lab3.PG.db import DB
-from Lab3.errors.db_error import DBError
+from PG.db import DB
+from errors.db_error import DBError
 from Recipe.Recipe import Recipe
 from errors.recipe_error import InvalidIngredientError
 #from Recipe.Recipe_generator import RecipeGenerator
-#print("Hello GovnoCode!!!") (не могу класс вынести, он не работает почему-то)
+
 class RecipeGenerator:
     def __init__(self,host:str,port:int,database:str,user:str,password:str):
         self.db = DB(host, port, database, user, password)

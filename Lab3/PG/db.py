@@ -1,6 +1,5 @@
 import psycopg2
-
-from Lab3.errors.db_error import DBError
+from errors.db_error import DBError
 
 
 class DB:
@@ -17,6 +16,7 @@ class DB:
             return self.conn
         except DBError as e:
             print(f"Error:{str(e)}")
+            return None
 
     def execute_query(self,conn, query):
         try:

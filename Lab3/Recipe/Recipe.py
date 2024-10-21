@@ -1,3 +1,10 @@
+from pydantic import BaseModel
+
+class RecipeReq(BaseModel):
+    type:str
+    name:str
+    ingredients:list[str]
+    instructions:str
 
 class Recipe:
     def __init__(self,type, name, ingredients, instructions):

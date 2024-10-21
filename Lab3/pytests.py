@@ -1,6 +1,6 @@
 import psycopg2
 import pytest
-from Lab3.PG.db import DB
+from PG.db import DB
 
 @pytest.fixture(scope="function")
 def db_connection():
