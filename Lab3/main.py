@@ -1,6 +1,6 @@
 import sys
 import random
-
+import logging
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, \
     QLineEdit, QTextEdit, QPushButton, QLabel, QDialogButtonBox, QDialog
 
@@ -10,9 +10,11 @@ from Recipe.Recipe import Recipe
 from errors.recipe_error import InvalidIngredientError
 #from Recipe.Recipe_generator import RecipeGenerator
 
+logging.basicConfig(filename='app.log', level=logging.INFO)
+
 class RecipeGenerator:
-    def __init__(self,host:str,port:int,database:str,user:str,password:str):
-        self.db = DB(host, port, database, user, password)
+    def __init__(self):
+        self.db = DB()
         self.recipes = self.load_recipes_from_db()
 
 
@@ -51,7 +53,7 @@ class MainWindow(QMainWindow):
         self.log_field = QTextEdit()
         self.log_field.setReadOnly(True)
         self.initUI()
-        self.recipe_generator = RecipeGenerator("localhost", 5430, "recipes_data", "postgres", "password")
+        self.recipe_generator = RecipeGenerator()
 
     def initUI(self):
         self.setGeometry(100, 100, 800, 600)
@@ -84,9 +86,11 @@ class MainWindow(QMainWindow):
         try:
             recipe = self.recipe_generator.generate_recipe()
             self.log_activity(f"Generated Recipe: {recipe.name}")
+            logging.info("Generated Recipe")
             self.display_recipe(recipe)
         except Exception as e:
             self.log_activity(f"Error: {str(e)}")
+            logging.info("Generate Recipe error")
 
     def add_new_recipe_dialog(self):
         def submit_recipe():
@@ -153,18 +157,21 @@ class MainWindow(QMainWindow):
 
             recipe = Recipe(type, name, ingredients, instructions)
             self.log_activity(f"Added New Recipe: {recipe.name}")
+            logging.info("Added New Recipe")
             self.recipe_generator.add_recipe(recipe)
             self.display_recipe(recipe)
             dialog.accept()
 
         except InvalidIngredientError as e:
             self.log_activity(f"Error: {str(e)}")
+            logging.info("Failed to add recipe")
             dialog.reject()
 
     def log_activity(self, message):
         self.log_field.append(message)
 
     def display_recipe(self, recipe):
+        logging.info("Displayed recipe")
         row = self.table.rowCount()
         self.table.setRowCount(row + 1)
         self.table.setItem(row, 0, QTableWidgetItem(recipe.type))
@@ -172,8 +179,12 @@ class MainWindow(QMainWindow):
         self.table.setItem(row, 2, QTableWidgetItem(", ".join(recipe.ingredients)))
         self.table.setItem(row, 3, QTableWidgetItem(recipe.instructions))
 
-if __name__ == "__main__":
+def main():
     app = QApplication(sys.argv)
+    logging.info("Program started")
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
+
+if __name__ == "__main__":
+    main()

@@ -11,7 +11,7 @@ async def root():
 
 @app.post("/recipes_data")
 async def get_all_recipes():
-    db = DB("localhost", 5430, "recipes_data", "postgres", "password")
+    db = DB()
     conn = db.connect()
     query = "SELECT * FROM recipes;"
     res=db.execute_query(conn, query)
@@ -22,13 +22,13 @@ async def get_all_recipes():
 
 @app.post("/generate_data")
 async def generate_recipe():
-    recipe_generator = RecipeGenerator("localhost", 5430, "recipes_data", "postgres", "password")
+    recipe_generator = RecipeGenerator()
     res=recipe_generator.generate_recipe()
     return res
 
 
 @app.post("/insert_data")
 async def insert_data(data:RecipeReq):
-    recipe_generator = RecipeGenerator("localhost", 5430, "recipes_data", "postgres", "password")
+    recipe_generator = RecipeGenerator()
     recipe=Recipe(data.type,data.name,data.ingredients,data.instructions)
     recipe_generator.add_recipe(recipe)

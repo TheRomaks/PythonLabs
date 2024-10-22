@@ -3,7 +3,7 @@ from pydantic import BaseModel
 class RecipeReq(BaseModel):
     type:str
     name:str
-    ingredients:list[str]
+    ingredients:str
     instructions:str
 
 class Recipe:

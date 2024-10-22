@@ -3,7 +3,7 @@ from errors.db_error import DBError
 
 
 class DB:
-    def __init__(self, host: str, port: int, database: str, user: str, password: str):
+    def __init__(self, host="localhost", port=5430, database="recipes_data", user="postgres", password="password"):
         self.host = host
         self.port = port
         self.database = database

@@ -7,7 +7,7 @@ from Recipe import Recipe
 
 # class RecipeGenerator:
 #     def __init__(self,host:str,port:int,database:str,user:str,password:str):
-#         self.db = DB(host, port, database, user, password)
+#         self.db = DB()
 #         self.recipes = self.load_recipes_from_db()
 #
 #
