@@ -107,7 +107,7 @@ class MainWindow(QMainWindow):
                 self.log_activity(f"Added New Recipe: {recipe.name}")
                 self.recipe_generator.add_recipe(recipe)
                 self.display_recipe(recipe)
-                new_recipe_window.accept()  # Use accept() instead of exec_()
+                new_recipe_window.accept()
 
             except InvalidIngredientError as e:
                 self.log_activity(f"Error: {str(e)}")
